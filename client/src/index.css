@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Global reset & base ───────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-brand-950 text-white font-sans antialiased min-h-screen;
+    background-image:
+      radial-gradient(ellipse at 20% 10%, rgba(99, 102, 241, 0.18) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 90%, rgba(139, 92, 246, 0.14) 0%, transparent 50%);
+  }
+
+  input, button, select, textarea {
+    font-family: inherit;
+  }
+}
+
+/* ── Reusable component classes ────────────────────────────────────── */
+@layer components {
+
+  /* Card container */
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-brand-600 hover:bg-brand-500 active:bg-brand-700
+           text-white font-semibold rounded-xl
+           px-6 py-3 min-h-[48px]
+           transition-all duration-200 ease-out
+           focus:outline-none focus:ring-2 focus:ring-brand-400 focus:ring-offset-2 focus:ring-offset-brand-950
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Secondary / ghost button */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2
+           bg-white/10 hover:bg-white/20 active:bg-white/5
+           text-white font-medium rounded-xl
+           px-6 py-3 min-h-[48px]
+           transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-white/30;
+  }
+
+  /* Form input */
+  .input-field {
+    @apply w-full bg-white/5 border border-white/15
+           rounded-xl px-4 py-3 text-white placeholder-white/30
+           focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-transparent
+           transition-all duration-200;
+  }
+
+  /* Status result cards */
+  .result-valid {
+    @apply bg-gradient-to-br from-emerald-900/80 to-emerald-800/60
+           border border-emerald-500/30;
+  }
+  .result-expired {
+    @apply bg-gradient-to-br from-amber-900/80 to-amber-800/60
+           border border-amber-500/30;
+  }
+  .result-revoked,
+  .result-invalid {
+    @apply bg-gradient-to-br from-red-900/80 to-red-800/60
+           border border-red-500/30;
+  }
+}
+
+/* ── QR scanner override ───────────────────────────────────────────── */
+/* html5-qrcode injects its own DOM — we style it to match our theme */
+#qr-reader {
+  border: none !important;
+  padding: 0 !important;
+  background: transparent !important;
+  width: 100% !important;
+}
+#qr-reader video {
+  border-radius: 1rem;
+  width: 100% !important;
+  max-height: 320px;
+  object-fit: cover;
+}
+#qr-reader__scan_region {
+  border-radius: 1rem;
+  overflow: hidden;
+}
+#qr-reader__dashboard {
+  display: none !important; /* hide the library's default buttons/UI */
+}
+#qr-reader img {
+  display: none !important; /* hide the default logo */
+}

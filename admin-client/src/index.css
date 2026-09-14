@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ───────────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { -webkit-tap-highlight-color: transparent; }
+
+  body {
+    @apply bg-[#13111f] text-white font-sans antialiased min-h-screen;
+  }
+
+  input, button, select, textarea { font-family: inherit; }
+}
+
+/* ── Components ─────────────────────────────────────────────────────── */
+@layer components {
+
+  /* Sidebar */
+  .sidebar {
+    @apply bg-[#0f0e1a] border-r border-white/5 flex flex-col;
+  }
+
+  /* Card / panel */
+  .panel {
+    @apply bg-white/[0.04] border border-white/[0.08] rounded-2xl;
+  }
+
+  /* Inputs */
+  .input-field {
+    @apply w-full bg-white/5 border border-white/10 rounded-xl
+           px-4 py-2.5 text-sm text-white placeholder-white/30
+           focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent
+           transition-all duration-150 disabled:opacity-50;
+  }
+
+  .select-field {
+    @apply input-field appearance-none cursor-pointer;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-brand-600 hover:bg-brand-500 active:bg-brand-700
+           text-white text-sm font-semibold rounded-xl px-4 py-2.5 min-h-[40px]
+           transition-all duration-150
+           focus:outline-none focus:ring-2 focus:ring-brand-400 focus:ring-offset-2 focus:ring-offset-[#13111f]
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2
+           bg-white/10 hover:bg-white/20 text-white/70 hover:text-white
+           text-sm font-medium rounded-xl px-4 py-2.5 min-h-[40px]
+           transition-all duration-150
+           focus:outline-none focus:ring-2 focus:ring-white/20
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2
+           bg-red-600 hover:bg-red-500 active:bg-red-700
+           text-white text-sm font-semibold rounded-xl px-4 py-2.5 min-h-[40px]
+           transition-all duration-150
+           focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-[#13111f]
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Table */
+  .data-table {
+    @apply w-full text-sm;
+  }
+  .data-table thead tr {
+    @apply border-b border-white/10;
+  }
+  .data-table thead th {
+    @apply text-left text-xs font-semibold uppercase tracking-wider text-white/40 px-4 py-3;
+  }
+  .data-table tbody tr {
+    @apply border-b border-white/5 hover:bg-white/[0.03] transition-colors;
+  }
+  .data-table tbody td {
+    @apply px-4 py-3 text-white/80;
+  }
+
+  /* Status badges */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold;
+  }
+  .badge-active      { @apply bg-emerald-500/20 text-emerald-300; }
+  .badge-inactive    { @apply bg-amber-500/20   text-amber-300;   }
+  .badge-suspended   { @apply bg-orange-500/20  text-orange-300;  }
+  .badge-graduated   { @apply bg-slate-500/20   text-slate-300;   }
+
+  /* Log result badges */
+  .badge-valid     { @apply bg-emerald-500/20 text-emerald-300; }
+  .badge-expired   { @apply bg-amber-500/20   text-amber-300;   }
+  .badge-revoked   { @apply bg-red-500/20     text-red-300;     }
+  .badge-invalid   { @apply bg-red-500/20     text-red-300;     }
+  .badge-not_found { @apply bg-red-500/20     text-red-300;     }
+
+  /* Modal overlay */
+  .modal-overlay {
+    @apply fixed inset-0 z-50 flex items-center justify-center p-4
+           bg-black/60 backdrop-blur-sm;
+  }
+  .modal-box {
+    @apply panel w-full max-w-lg animate-slide-down;
+  }
+  .modal-header {
+    @apply flex items-center justify-between px-6 py-4 border-b border-white/10;
+  }
+
+
+  /* Toast */
+  .toast {
+    @apply fixed top-4 right-4 z-[60] flex items-center gap-3
+           px-4 py-3 rounded-xl shadow-2xl animate-toast-in text-sm font-medium;
+  }
+  .toast-success { @apply bg-emerald-900 border border-emerald-600/40 text-emerald-200; }
+  .toast-error   { @apply bg-red-900    border border-red-600/40    text-red-200;     }
+}
