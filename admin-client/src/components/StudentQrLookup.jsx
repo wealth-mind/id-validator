@@ -51,6 +51,10 @@ export default function StudentQrLookup({
       }
       isRunningRef.current = false;
     }
+    if (html5QrRef.current) {
+      try { html5QrRef.current.clear(); } catch (_) {}
+      html5QrRef.current = null;
+    }
   }, []);
 
   // Handle successful QR decode
@@ -237,29 +241,29 @@ export default function StudentQrLookup({
       aria-labelledby="qr-lookup-modal-title"
     >
       <div
-        className="modal-box max-w-md overflow-hidden animate-slide-down"
+        className="modal-box max-w-full sm:max-w-md animate-slide-down"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
         <div className="modal-header">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-brand-500/20 flex items-center justify-center text-brand-400">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="w-8 h-8 flex-shrink-0 rounded-lg bg-brand-500/20 flex items-center justify-center text-brand-600 dark:text-brand-400">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
                 <path fillRule="evenodd" d="M3 4.5A1.5 1.5 0 014.5 3h4.5A1.5 1.5 0 0110.5 4.5v4.5A1.5 1.5 0 019 10.5H4.5A1.5 1.5 0 013 9V4.5zm1.5 0v4.5h4.5V4.5h-4.5zM3 15a1.5 1.5 0 011.5-1.5h4.5A1.5 1.5 0 0110.5 15v4.5A1.5 1.5 0 019 21H4.5A1.5 1.5 0 013 19.5V15zm1.5 0v4.5h4.5V15h-4.5zM13.5 4.5A1.5 1.5 0 0115 3h4.5A1.5 1.5 0 0121 4.5v4.5A1.5 1.5 0 0119.5 10.5H15A1.5 1.5 0 0113.5 9V4.5zm1.5 0v4.5h4.5V4.5h-4.5zM15 13.5a1.5 1.5 0 00-1.5 1.5v4.5a1.5 1.5 0 001.5 1.5h4.5a1.5 1.5 0 001.5-1.5V15a1.5 1.5 0 00-1.5-1.5H15zm0 1.5h4.5v4.5H15V15z" clipRule="evenodd" />
               </svg>
             </div>
-            <div>
-              <h2 id="qr-lookup-modal-title" className="text-base font-bold text-white">
+            <div className="min-w-0">
+              <h2 id="qr-lookup-modal-title" className="text-base font-bold text-slate-900 dark:text-white">
                 Scan Student QR Code
               </h2>
-              <p className="text-xs text-white/40">Point camera at ID card to view/edit record</p>
+              <p className="text-xs text-slate-500 dark:text-white/40">Point camera at ID card to view/edit record</p>
             </div>
           </div>
           <button
             onClick={onClose}
             disabled={isLookingUp || manualLoading}
             aria-label="Close scanner"
-            className="text-white/30 hover:text-white transition-colors disabled:opacity-30 p-1"
+            className="-mr-2 inline-flex items-center justify-center w-11 h-11 flex-shrink-0 rounded-xl text-slate-400 dark:text-white/30 hover:text-slate-900 dark:hover:text-white transition-colors disabled:opacity-30"
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
               <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
@@ -268,14 +272,14 @@ export default function StudentQrLookup({
         </div>
 
         {/* Content Body */}
-        <div className="p-5 space-y-4">
+        <div className="p-4 sm:p-5 space-y-4">
           {/* Inline Error Alert */}
           {scanError && (
             <div
               role="alert"
-              className="rounded-xl bg-red-500/15 border border-red-500/25 text-red-300 text-xs px-3.5 py-2.5 animate-fade-in flex items-start gap-2.5"
+              className="rounded-xl bg-red-500/15 border border-red-500/25 text-red-700 dark:text-red-300 text-xs px-3.5 py-2.5 animate-fade-in flex items-start gap-2.5"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 flex-shrink-0 text-red-400 mt-0.5">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 flex-shrink-0 text-red-600 dark:text-red-400 mt-0.5">
                 <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
               </svg>
               <span className="leading-relaxed">{scanError}</span>
@@ -284,8 +288,8 @@ export default function StudentQrLookup({
 
           {/* Looking up in flight overlay / indicator */}
           {isLookingUp && (
-            <div className="rounded-xl bg-brand-500/15 border border-brand-500/25 text-brand-300 text-xs px-3.5 py-2 animate-fade-in flex items-center gap-2">
-              <svg className="animate-spin-slow w-4 h-4 text-brand-400" viewBox="0 0 24 24" fill="none">
+            <div className="rounded-xl bg-brand-500/15 border border-brand-500/25 text-brand-700 dark:text-brand-300 text-xs px-3.5 py-2 animate-fade-in flex items-center gap-2">
+              <svg className="animate-spin-slow w-4 h-4 text-brand-600 dark:text-brand-400" viewBox="0 0 24 24" fill="none">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
               </svg>
@@ -295,13 +299,13 @@ export default function StudentQrLookup({
 
           {/* Camera Error Display */}
           {cameraError ? (
-            <div className="bg-white/5 border border-white/10 rounded-xl p-5 text-center flex flex-col items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400">
+            <div className="bg-slate-900/5 dark:bg-white/5 border border-slate-900/10 dark:border-white/10 rounded-xl p-5 text-center flex flex-col items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-600 dark:text-amber-400">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
                   <path fillRule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clipRule="evenodd" />
                 </svg>
               </div>
-              <p className="text-xs text-white/70 max-w-xs">
+              <p className="text-xs text-slate-700 dark:text-white/70 max-w-xs">
                 {cameraError === 'permission_denied'
                   ? 'Camera access was denied. Please allow camera permissions in your browser.'
                   : cameraError === 'no_device'
@@ -321,7 +325,7 @@ export default function StudentQrLookup({
             </div>
           ) : (
             /* Camera Viewport */
-            <div className="relative w-full rounded-xl overflow-hidden bg-black/40 border border-white/10 min-h-[240px] flex items-center justify-center">
+            <div className="relative w-full max-w-full rounded-xl overflow-hidden bg-black/40 border border-slate-900/10 dark:border-white/10 min-h-[240px] flex items-center justify-center">
               <div id={SCANNER_DOM_ID} className="w-full" />
 
               {/* Decorative reticle */}
@@ -330,7 +334,7 @@ export default function StudentQrLookup({
                   aria-hidden="true"
                   className="pointer-events-none absolute inset-0 flex items-center justify-center"
                 >
-                  <div className="relative w-44 h-44">
+                  <div className="relative w-40 h-40 sm:w-44 sm:h-44">
                     {['tl', 'tr', 'bl', 'br'].map((corner) => {
                       const isTop = corner.startsWith('t');
                       const isLeft = corner.endsWith('l');
@@ -357,11 +361,11 @@ export default function StudentQrLookup({
 
           {/* Divider */}
           <div className="relative flex py-1 items-center">
-            <div className="flex-grow border-t border-white/10"></div>
-            <span className="flex-shrink mx-3 text-[11px] uppercase tracking-wider text-white/30 font-medium">
+            <div className="flex-grow border-t border-slate-900/10 dark:border-white/10"></div>
+            <span className="flex-shrink mx-3 text-[11px] uppercase tracking-wider text-slate-400 dark:text-white/30 font-medium">
               Or enter matric number
             </span>
-            <div className="flex-grow border-t border-white/10"></div>
+            <div className="flex-grow border-t border-slate-900/10 dark:border-white/10"></div>
           </div>
 
           {/* Manual Fallback Input Form */}
@@ -373,13 +377,13 @@ export default function StudentQrLookup({
               onChange={(e) => setManualInput(e.target.value)}
               placeholder="e.g. CSC/2021/001"
               disabled={isLookingUp || manualLoading}
-              className="input-field font-mono text-xs uppercase flex-1"
+              className="input-field font-mono sm:text-xs uppercase flex-1 min-w-0"
             />
             <button
               id="manual-lookup-btn"
               type="submit"
               disabled={!manualInput.trim() || isLookingUp || manualLoading}
-              className="btn-primary text-xs px-4 py-2 whitespace-nowrap"
+              className="btn-primary text-xs px-4 py-2 whitespace-nowrap flex-shrink-0"
             >
               {manualLoading ? (
                 <svg className="animate-spin-slow w-3.5 h-3.5" viewBox="0 0 24 24" fill="none">
@@ -394,7 +398,7 @@ export default function StudentQrLookup({
         </div>
 
         {/* Footer */}
-        <div className="flex justify-end px-5 py-3.5 bg-white/[0.02] border-t border-white/5">
+        <div className="flex justify-end px-4 sm:px-5 py-3.5 bg-slate-900/[0.02] dark:bg-white/[0.02] border-t border-slate-900/5 dark:border-white/5">
           <button
             type="button"
             onClick={onClose}

@@ -14,7 +14,7 @@ const auditService = require('../services/audit.service');
  */
 async function getLogs(req, res, next) {
   try {
-    const { result, dateFrom, dateTo, staffId, studentId, page, limit } = req.query;
+    const { result, dateFrom, dateTo, staffId, studentId, locationTag, page, limit } = req.query;
 
     // Basic date validation
     if (dateFrom && isNaN(new Date(dateFrom).getTime())) {
@@ -30,6 +30,7 @@ async function getLogs(req, res, next) {
       dateTo,
       staffId,
       studentId,
+      locationTag,
       page,
       limit,
     });

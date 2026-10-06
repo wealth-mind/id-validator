@@ -58,14 +58,14 @@ export default function QrCodeModal({ isOpen, onClose, qrImage, student }) {
 
   return (
     <div className="modal-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-label="QR Code">
-      <div className="modal-box max-w-sm" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-box max-w-full sm:max-w-sm" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h2 className="text-base font-bold text-white">Student QR Code</h2>
+          <h2 className="text-base font-bold text-slate-900 dark:text-white">Student QR Code</h2>
           <button
             id="qr-modal-close-btn"
             onClick={onClose}
             aria-label="Close"
-            className="text-white/30 hover:text-white transition-colors"
+            className="-mr-2 inline-flex items-center justify-center w-11 h-11 flex-shrink-0 rounded-xl text-slate-400 dark:text-white/30 hover:text-slate-900 dark:hover:text-white transition-colors"
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
               <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
@@ -73,27 +73,27 @@ export default function QrCodeModal({ isOpen, onClose, qrImage, student }) {
           </button>
         </div>
 
-        <div className="px-6 py-5 flex flex-col items-center gap-4">
+        <div className="px-4 sm:px-6 py-5 flex flex-col items-center gap-4">
           {/* QR image */}
-          <div className="p-3 bg-white rounded-xl">
-            <img src={qrImage} alt="Student QR Code" className="w-52 h-52 object-contain" />
+          <div className="p-3 bg-white rounded-xl border border-slate-200 dark:border-white/30 shadow-sm max-w-full">
+            <img src={qrImage} alt="Student QR Code" className="w-52 h-52 max-w-full aspect-square object-contain" />
           </div>
 
           {/* Student info */}
           {student && (
-            <div className="text-center">
-              <p className="text-base font-bold text-white">{student.fullName}</p>
-              <p className="text-sm font-mono text-brand-300">{student.matricNumber}</p>
+            <div className="text-center min-w-0 max-w-full">
+              <p className="text-base font-bold text-slate-900 dark:text-white break-words">{student.fullName}</p>
+              <p className="text-sm font-mono text-brand-700 dark:text-brand-300">{student.matricNumber}</p>
             </div>
           )}
 
           {/* Warning */}
-          <div className="w-full rounded-xl bg-amber-500/10 border border-amber-500/20 px-4 py-3 text-xs text-amber-300 leading-relaxed">
+          <div className="w-full rounded-xl bg-amber-500/10 border border-amber-500/20 px-4 py-3 text-xs text-amber-700 dark:text-amber-300 leading-relaxed">
             ⚠️ Save or print this QR code now. It will not be shown again without reissuing a new token.
           </div>
         </div>
 
-        <div className="flex gap-3 px-6 pb-5">
+        <div className="flex flex-col sm:flex-row gap-3 px-4 sm:px-6 pb-5">
           <button id="qr-download-btn" onClick={handleDownload} className="btn-primary flex-1">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
               <path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 10-1.09-1.03l-2.955 3.129V2.75z" />

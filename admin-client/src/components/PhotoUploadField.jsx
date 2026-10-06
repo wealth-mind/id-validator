@@ -109,7 +109,7 @@ export default function PhotoUploadField({ value, onChange, disabled = false }) 
   const isInteractive = !disabled && !uploading;
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 items-center sm:items-start max-w-full">
       {/* Photo box */}
       <div
         role="button"
@@ -121,11 +121,11 @@ export default function PhotoUploadField({ value, onChange, disabled = false }) 
         onDragLeave={isInteractive ? handleDragLeave : undefined}
         onDrop={isInteractive ? handleDrop : undefined}
         className={[
-          'relative w-28 h-28 rounded-2xl overflow-hidden flex items-center justify-center',
+          'relative w-36 h-36 max-w-full sm:w-28 sm:h-28 rounded-2xl overflow-hidden flex items-center justify-center',
           'border-2 border-dashed transition-all duration-150 select-none',
           isDragOver
             ? 'border-brand-400 bg-brand-600/10 scale-[1.02]'
-            : 'border-white/20 bg-white/5',
+            : 'border-slate-900/20 dark:border-white/20 bg-slate-900/5 dark:bg-white/5',
           isInteractive
             ? 'cursor-pointer hover:border-brand-400 hover:bg-brand-600/10'
             : 'cursor-not-allowed opacity-50',
@@ -136,12 +136,12 @@ export default function PhotoUploadField({ value, onChange, disabled = false }) 
           <img
             src={preview}
             alt="Student photo"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover bg-white dark:bg-white/10"
             onError={() => setPreview(null)}
           />
         ) : (
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-            className="w-10 h-10 text-white/20">
+            className="w-10 h-10 text-slate-400 dark:text-white/20">
             <path fillRule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clipRule="evenodd" />
           </svg>
         )}
@@ -170,13 +170,13 @@ export default function PhotoUploadField({ value, onChange, disabled = false }) 
       </div>
 
       {/* Helper text */}
-      <p className="text-[10px] text-white/25 leading-snug max-w-[7rem]">
+      <p className="text-[10px] text-slate-400 dark:text-white/25 leading-snug max-w-full text-center sm:text-left sm:max-w-[7rem]">
         JPEG, PNG, or WEBP · max 5 MB
       </p>
 
       {/* Inline error */}
       {error && (
-        <p className="text-xs text-red-400 max-w-[200px] leading-snug animate-fade-in" role="alert">
+        <p className="text-xs text-red-600 dark:text-red-400 max-w-full text-center sm:text-left sm:max-w-[200px] leading-snug animate-fade-in" role="alert">
           {error}
         </p>
       )}

@@ -6,6 +6,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
 import { setAuthContext } from './api/axiosClient';
 import './index.css';
 
@@ -17,10 +18,12 @@ function AxiosBridge({ children }) {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProvider>
-      <AxiosBridge>
-        <App />
-      </AxiosBridge>
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <AxiosBridge>
+          <App />
+        </AxiosBridge>
+      </AuthProvider>
+    </ThemeProvider>
   </React.StrictMode>,
 );

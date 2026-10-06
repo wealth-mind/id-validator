@@ -48,7 +48,7 @@ async function logScan({ studentId, staffId, locationTag, result, matricNumberAt
  * @param {number}  [options.limit=50]
  * @returns {Promise<{ data: object[], total: number, page: number, totalPages: number }>}
  */
-async function getLogs({ result, dateFrom, dateTo, staffId, studentId, page = 1, limit = 50 } = {}) {
+async function getLogs({ result, dateFrom, dateTo, staffId, studentId, locationTag, page = 1, limit = 50 } = {}) {
   const filter = {};
 
   if (result) {
@@ -72,6 +72,10 @@ async function getLogs({ result, dateFrom, dateTo, staffId, studentId, page = 1,
 
   if (studentId) {
     filter.student = studentId;
+  }
+
+  if (locationTag) {
+    filter.locationTag = locationTag;
   }
 
   const safeLimit = Math.min(Math.max(parseInt(limit, 10) || 50, 1), 200);

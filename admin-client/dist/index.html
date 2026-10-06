@@ -3,17 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="description" content="Registrar admin dashboard for managing student ID records and auditing scan activity." />
     <meta name="robots" content="noindex, nofollow" />
     <title>Admin — Student ID Validation System</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <script type="module" crossorigin src="/assets/index-DR44N7pX.js"></script>
+    <!-- Apply saved/system theme before first paint (avoids a light/dark flash) -->
+    <script>
+      (function () {
+        try {
+          var s = localStorage.getItem('theme-preference');
+          var dark = s ? s === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.classList.toggle('dark', dark);
+          document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+        } catch (e) {}
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-CIUdhEgN.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C-3YWJmb.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-axios-CzApALvg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-qrcode-Dy-dsujr.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-DmQ6eaI0.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-B7qivIEA.css">
   </head>
   <body>
     <div id="root"></div>

@@ -20,11 +20,11 @@ export default function LoginPage() {
   const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  const [email, setEmail]         = useState('');
-  const [password, setPassword]   = useState('');
-  const [showPwd, setShowPwd]     = useState(false);
-  const [loading, setLoading]     = useState(false);
-  const [error, setError]         = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPwd, setShowPwd] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   // Already logged in — bounce to scanner
   if (isAuthenticated) return <Navigate to="/scan" replace />;
@@ -49,42 +49,31 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-12">
+    <div className="flex-1 flex flex-col items-center justify-center px-4 py-8 sm:py-12">
       {/* Brand header */}
-      <div className="flex flex-col items-center gap-3 mb-10 animate-fade-in">
-        {/* Shield icon */}
-        <div className="w-16 h-16 rounded-2xl bg-brand-600/20 border border-brand-500/30 flex items-center justify-center shadow-lg shadow-brand-900/40">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            className="w-9 h-9 text-brand-400"
-            aria-hidden="true"
-          >
-            <path
-              fillRule="evenodd"
-              d="M12.516 2.17a.75.75 0 00-1.032 0 11.209 11.209 0 01-7.877 3.08.75.75 0 00-.722.515A12.74 12.74 0 002.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.75.75 0 00.374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 00-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </div>
+      <div className="flex flex-col items-center gap-3 mb-6 sm:mb-8 animate-fade-in">
+        <img
+          src="/logo.png"
+          alt="University Logo"
+          className="w-20 h-20 object-contain drop-shadow-lg"
+        />
         <div className="text-center">
-          <h1 className="text-2xl font-extrabold text-white tracking-tight">ID Scanner</h1>
-          <p className="text-sm text-white/45 mt-1">Student ID Validation System</p>
+          <h1 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">ID Scanner</h1>
+          <p className="text-sm text-slate-500 dark:text-white/45 mt-1">Student ID Validation System</p>
         </div>
       </div>
 
       {/* Login card */}
-      <div className="glass-card w-full max-w-sm p-8 animate-slide-up">
-        <h2 className="text-lg font-bold text-white mb-1">Staff Sign In</h2>
-        <p className="text-xs text-white/40 mb-6">Authorised personnel only</p>
+      <div className="glass-card w-full max-w-sm sm:max-w-md p-5 sm:p-8 animate-slide-up">
+        <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-1">Staff Sign In</h2>
+        <p className="text-xs text-slate-500 dark:text-white/40 mb-6">Authorised personnel only</p>
 
         {/* Error banner */}
         {error && (
           <div
             role="alert"
             className="flex items-center gap-2.5 rounded-xl bg-red-500/15 border border-red-500/30
-                       text-red-300 text-sm px-4 py-3 mb-5 animate-fade-in"
+                       text-red-700 dark:text-red-300 text-sm px-4 py-3 mb-5 animate-fade-in"
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
               className="w-4 h-4 flex-shrink-0" aria-hidden="true">
@@ -97,7 +86,7 @@ export default function LoginPage() {
         <form id="login-form" onSubmit={handleSubmit} noValidate className="space-y-4">
           {/* Email */}
           <div>
-            <label htmlFor="email" className="block text-xs font-semibold uppercase tracking-widest text-white/50 mb-2">
+            <label htmlFor="email" className="block text-xs font-semibold uppercase tracking-widest text-slate-600 dark:text-white/50 mb-2">
               Email
             </label>
             <input
@@ -107,7 +96,7 @@ export default function LoginPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@university.edu"
+              placeholder="staff@fupre.com"
               className="input-field"
               disabled={loading}
               aria-describedby={error ? 'login-error' : undefined}
@@ -116,7 +105,7 @@ export default function LoginPage() {
 
           {/* Password */}
           <div>
-            <label htmlFor="password" className="block text-xs font-semibold uppercase tracking-widest text-white/50 mb-2">
+            <label htmlFor="password" className="block text-xs font-semibold uppercase tracking-widest text-slate-600 dark:text-white/50 mb-2">
               Password
             </label>
             <div className="relative">
@@ -136,7 +125,7 @@ export default function LoginPage() {
                 id="toggle-password-btn"
                 aria-label={showPwd ? 'Hide password' : 'Show password'}
                 onClick={() => setShowPwd((v) => !v)}
-                className="absolute inset-y-0 right-0 flex items-center px-4 text-white/30 hover:text-white/60 transition-colors"
+                className="absolute inset-y-0 right-0 min-w-[44px] flex items-center justify-center px-3 text-slate-400 dark:text-white/30 hover:text-slate-600 dark:hover:text-white/60 transition-colors"
                 tabIndex={-1}
               >
                 {showPwd ? (
@@ -176,7 +165,7 @@ export default function LoginPage() {
         </form>
       </div>
 
-      <p className="mt-8 text-xs text-white/20 text-center">
+      <p className="mt-8 text-xs text-slate-400 dark:text-white/20 text-center">
         For account issues, contact the registrar's office.
       </p>
     </div>

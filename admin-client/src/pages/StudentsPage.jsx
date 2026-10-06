@@ -108,10 +108,10 @@ export default function StudentsPage() {
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-white">Students</h1>
-          <p className="text-sm text-white/40 mt-1">Manage student records and cryptographic QR tokens</p>
+          <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">Students</h1>
+          <p className="text-sm text-slate-500 dark:text-white/40 mt-1">Manage student records and cryptographic QR tokens</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 w-full sm:w-auto">
           <button
             id="scan-student-btn"
             onClick={() => {
@@ -120,7 +120,7 @@ export default function StudentsPage() {
             }}
             className="btn-ghost"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-brand-400">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-brand-600 dark:text-brand-400">
               <path fillRule="evenodd" d="M3 4.5A1.5 1.5 0 014.5 3h4.5A1.5 1.5 0 0110.5 4.5v4.5A1.5 1.5 0 019 10.5H4.5A1.5 1.5 0 013 9V4.5zm1.5 0v4.5h4.5V4.5h-4.5zM3 15a1.5 1.5 0 011.5-1.5h4.5A1.5 1.5 0 0110.5 15v4.5A1.5 1.5 0 019 21H4.5A1.5 1.5 0 013 19.5V15zm1.5 0v4.5h4.5V15h-4.5zM13.5 4.5A1.5 1.5 0 0115 3h4.5A1.5 1.5 0 0121 4.5v4.5A1.5 1.5 0 0119.5 10.5H15A1.5 1.5 0 0113.5 9V4.5zm1.5 0v4.5h4.5V4.5h-4.5zM15 13.5a1.5 1.5 0 00-1.5 1.5v4.5a1.5 1.5 0 001.5 1.5h4.5a1.5 1.5 0 001.5-1.5V15a1.5 1.5 0 00-1.5-1.5H15zm0 1.5h4.5v4.5H15V15z" clipRule="evenodd" />
             </svg>
             Scan to find student
@@ -135,7 +135,7 @@ export default function StudentsPage() {
       </div>
 
       {error && (
-        <div role="alert" className="rounded-xl bg-red-500/15 border border-red-500/25 text-red-300 text-sm px-4 py-3">
+        <div role="alert" className="rounded-xl bg-red-500/15 border border-red-500/25 text-red-700 dark:text-red-300 text-sm px-4 py-3">
           {error}
         </div>
       )}
@@ -197,7 +197,7 @@ export default function StudentsPage() {
           reissueTarget ? (
             <span>
               Are you sure you want to reissue a QR code for{' '}
-              <strong className="text-white">{reissueTarget.fullName}</strong> ({reissueTarget.matricNumber})?
+              <strong className="text-slate-900 dark:text-white">{reissueTarget.fullName}</strong> ({reissueTarget.matricNumber})?
               The existing QR code will be immediately revoked and become invalid.
             </span>
           ) : ''

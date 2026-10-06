@@ -12,11 +12,12 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 // ─── Routes ───────────────────────────────────────────────────────────────────
-const authRoutes    = require('./routes/auth.routes');
+const authRoutes     = require('./routes/auth.routes');
 const studentsRoutes = require('./routes/students.routes');
-const scanRoutes    = require('./routes/scan.routes');
-const logsRoutes    = require('./routes/logs.routes');
-const uploadsRoutes = require('./routes/uploads.routes');
+const scanRoutes     = require('./routes/scan.routes');
+const logsRoutes     = require('./routes/logs.routes');
+const uploadsRoutes  = require('./routes/uploads.routes');
+const locationRoutes = require('./routes/location.routes');
 
 const path = require('path');
 
@@ -95,11 +96,12 @@ app.get('/api/health', (req, res) => {
 app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
 // ─── API Routes ───────────────────────────────────────────────────────────────
-app.use('/api/auth',    authRoutes);
-app.use('/api/students', studentsRoutes);
-app.use('/api/scan',    scanRoutes);
-app.use('/api/logs',    logsRoutes);
-app.use('/api/uploads', uploadsRoutes);
+app.use('/api/auth',      authRoutes);
+app.use('/api/students',  studentsRoutes);
+app.use('/api/scan',      scanRoutes);
+app.use('/api/logs',      logsRoutes);
+app.use('/api/uploads',   uploadsRoutes);
+app.use('/api/locations', locationRoutes);
 
 // ─── 404 handler ─────────────────────────────────────────────────────────────
 app.use((req, res) => {

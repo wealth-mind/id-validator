@@ -26,6 +26,7 @@ export function AuthProvider({ children }) {
   const [staff, setStaff]               = useState(null);
   const [accessToken, setAccessToken]   = useState(null);
   const [refreshToken, setRefreshToken] = useState(null);
+  const [locationTag, setLocationTag]   = useState('');
 
   // Mirror accessToken & refreshToken in refs so the Axios interceptor
   // can read the latest value without stale closure issues.
@@ -65,6 +66,7 @@ export function AuthProvider({ children }) {
     setAccessToken(null);
     setRefreshToken(null);
     setStaff(null);
+    setLocationTag('');
   }, []);
 
   const value = {
@@ -72,6 +74,8 @@ export function AuthProvider({ children }) {
     accessToken,
     refreshToken,
     isAuthenticated: Boolean(accessToken && staff),
+    locationTag,
+    setLocationTag,
     // Refs exposed so axiosClient can read without stale closures
     accessTokenRef,
     refreshTokenRef,

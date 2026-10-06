@@ -20,7 +20,7 @@ export default function ProtectedRoute({ children }) {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            className="w-14 h-14 text-red-400"
+            className="w-14 h-14 text-red-600 dark:text-red-400"
             aria-hidden="true"
           >
             <path
@@ -31,15 +31,15 @@ export default function ProtectedRoute({ children }) {
           </svg>
 
           <div>
-            <h1 className="text-xl font-bold text-white mb-2">Access Denied</h1>
-            <p className="text-sm text-white/60 leading-relaxed">
-              Your account role (<span className="font-mono text-white/80">{staff.role}</span>) is
+            <h1 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Access Denied</h1>
+            <p className="text-sm text-slate-600 dark:text-white/60 leading-relaxed">
+              Your account role (<span className="font-mono text-slate-700 dark:text-white/80">{staff.role}</span>) is
               not authorised to access the admin portal.
             </p>
           </div>
 
-          <p className="text-xs text-white/30">
-            Logged in as <span className="text-white/50">{staff.email}</span>
+          <p className="text-xs text-slate-400 dark:text-white/30">
+            Logged in as <span className="text-slate-600 dark:text-white/50">{staff.email}</span>
           </p>
         </div>
       </div>

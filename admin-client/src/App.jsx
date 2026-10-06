@@ -1,26 +1,15 @@
 /**
  * src/App.jsx
- * Router + layout: authenticated pages share the Sidebar + main content area.
+ * Router: authenticated pages share AppLayout (Sidebar + header bar + content).
  */
-import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import AppLayout from './components/AppLayout';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import StudentsPage from './pages/StudentsPage';
 import LogsPage from './pages/LogsPage';
+import LocationsPage from './pages/LocationsPage';
 import ProtectedRoute from './routes/ProtectedRoute';
-
-/** Shared layout for authenticated pages */
-function AdminLayout() {
-  return (
-    <div className="flex min-h-screen">
-      <Sidebar />
-      <main className="flex-1 p-8 overflow-y-auto">
-        <Outlet />
-      </main>
-    </div>
-  );
-}
 
 export default function App() {
   return (
@@ -33,13 +22,14 @@ export default function App() {
         <Route
           element={
             <ProtectedRoute>
-              <AdminLayout />
+              <AppLayout />
             </ProtectedRoute>
           }
         >
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/students"  element={<StudentsPage />} />
           <Route path="/logs"      element={<LogsPage />} />
+          <Route path="/locations" element={<LocationsPage />} />
         </Route>
 
         {/* Catch-all */}

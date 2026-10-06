@@ -31,14 +31,14 @@ export default function ConfirmDialog({
 
   if (!isOpen) return null;
 
-  const iconCls   = variant === 'danger' ? 'text-red-400' : 'text-amber-400';
+  const iconCls   = variant === 'danger' ? 'text-red-600 dark:text-red-400' : 'text-amber-600 dark:text-amber-400';
   const confirmCls = variant === 'danger' ? 'btn-danger' : 'btn-primary bg-amber-600 hover:bg-amber-500';
 
   return (
     <div className="modal-overlay" onClick={onCancel} role="dialog" aria-modal="true" aria-labelledby="confirm-title">
-      <div className="modal-box max-w-sm" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-box max-w-full sm:max-w-sm" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 min-w-0">
             <span className={iconCls}>
               {variant === 'danger' ? (
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -50,15 +50,15 @@ export default function ConfirmDialog({
                 </svg>
               )}
             </span>
-            <h2 id="confirm-title" className="text-base font-bold text-white">{title}</h2>
+            <h2 id="confirm-title" className="text-base font-bold text-slate-900 dark:text-white">{title}</h2>
           </div>
         </div>
 
-        <div className="px-6 py-4">
-          <p className="text-sm text-white/60 leading-relaxed">{message}</p>
+        <div className="px-4 sm:px-6 py-4">
+          <p className="text-sm text-slate-600 dark:text-white/60 leading-relaxed break-words">{message}</p>
         </div>
 
-        <div className="flex justify-end gap-3 px-6 pb-5">
+        <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 px-4 sm:px-6 pb-5">
           <button id="confirm-cancel-btn" onClick={onCancel} className="btn-ghost" disabled={loading}>
             Cancel
           </button>

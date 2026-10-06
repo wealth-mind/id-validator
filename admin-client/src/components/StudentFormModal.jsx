@@ -139,17 +139,17 @@ export default function StudentFormModal({ isOpen, onClose, onSuccess, student }
       aria-modal="true"
       aria-labelledby="student-form-title"
     >
-      <div className="modal-box max-w-xl" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-box max-w-full sm:max-w-xl" onClick={(e) => e.stopPropagation()}>
         {/* Header */}
         <div className="modal-header">
-          <h2 id="student-form-title" className="text-base font-bold text-white">
+          <h2 id="student-form-title" className="text-base font-bold text-slate-900 dark:text-white">
             {isEdit ? 'Edit Student' : 'Add New Student'}
           </h2>
           <button
             onClick={onClose}
             disabled={loading || isUploading}
             aria-label="Close"
-            className="text-white/30 hover:text-white transition-colors disabled:opacity-30"
+            className="-mr-2 inline-flex items-center justify-center w-11 h-11 flex-shrink-0 rounded-xl text-slate-400 dark:text-white/30 hover:text-slate-900 dark:hover:text-white transition-colors disabled:opacity-30"
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
               <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
@@ -158,19 +158,19 @@ export default function StudentFormModal({ isOpen, onClose, onSuccess, student }
         </div>
 
         {/* Form */}
-        <form id="student-form" onSubmit={handleSubmit} className="px-6 py-4 space-y-5">
+        <form id="student-form" onSubmit={handleSubmit} className="px-4 sm:px-6 py-4 space-y-5">
           {error && (
             <div role="alert" className="rounded-xl bg-red-500/15 border border-red-500/25
-                     text-red-300 text-sm px-4 py-3 animate-fade-in leading-relaxed">
+                     text-red-700 dark:text-red-300 text-sm px-4 py-3 animate-fade-in leading-relaxed">
               {error}
             </div>
           )}
 
           {/* Photo + core fields row */}
-          <div className="flex gap-5 items-start">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-stretch sm:items-start">
             {/* Photo upload */}
-            <div className="flex-shrink-0">
-              <p className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-2">
+            <div className="flex-shrink-0 flex flex-col items-center sm:items-start">
+              <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-white/40 mb-2">
                 Photo
               </p>
               <PhotoUploadField
@@ -181,10 +181,10 @@ export default function StudentFormModal({ isOpen, onClose, onSuccess, student }
             </div>
 
             {/* Matric + Full Name stacked */}
-            <div className="flex-1 space-y-4">
+            <div className="flex-1 min-w-0 space-y-4">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-white/40 mb-1.5">
-                  Matric Number <span className="text-red-400">*</span>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-white/40 mb-1.5">
+                  Matric Number <span className="text-red-600 dark:text-red-400">*</span>
                 </label>
                 <input
                   id="field-matric"
@@ -198,8 +198,8 @@ export default function StudentFormModal({ isOpen, onClose, onSuccess, student }
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-white/40 mb-1.5">
-                  Full Name <span className="text-red-400">*</span>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-white/40 mb-1.5">
+                  Full Name <span className="text-red-600 dark:text-red-400">*</span>
                 </label>
                 <input
                   id="field-fullname"
@@ -216,10 +216,10 @@ export default function StudentFormModal({ isOpen, onClose, onSuccess, student }
           </div>
 
           {/* College / Department / Program Level / Status / Valid Until */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-white/40 mb-1.5">
-                College <span className="text-red-400">*</span>
+              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-white/40 mb-1.5">
+                College <span className="text-red-600 dark:text-red-400">*</span>
               </label>
               <input
                 id="field-college"
@@ -234,8 +234,8 @@ export default function StudentFormModal({ isOpen, onClose, onSuccess, student }
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-white/40 mb-1.5">
-                Department <span className="text-red-400">*</span>
+              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-white/40 mb-1.5">
+                Department <span className="text-red-600 dark:text-red-400">*</span>
               </label>
               <input
                 id="field-dept"
@@ -250,8 +250,8 @@ export default function StudentFormModal({ isOpen, onClose, onSuccess, student }
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-white/40 mb-1.5">
-                Program Level <span className="text-red-400">*</span>
+              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-white/40 mb-1.5">
+                Program Level <span className="text-red-600 dark:text-red-400">*</span>
               </label>
               <select
                 id="field-level"
@@ -267,7 +267,7 @@ export default function StudentFormModal({ isOpen, onClose, onSuccess, student }
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-white/40 mb-1.5">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-white/40 mb-1.5">
                 Status
               </label>
               <select
@@ -284,8 +284,8 @@ export default function StudentFormModal({ isOpen, onClose, onSuccess, student }
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-white/40 mb-1.5">
-                Valid Until <span className="text-red-400">*</span>
+              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-white/40 mb-1.5">
+                Valid Until <span className="text-red-600 dark:text-red-400">*</span>
               </label>
               <input
                 id="field-validuntil"
@@ -301,7 +301,7 @@ export default function StudentFormModal({ isOpen, onClose, onSuccess, student }
         </form>
 
         {/* Footer */}
-        <div className="flex justify-end gap-3 px-6 pb-5">
+        <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 px-4 sm:px-6 pb-5">
           <button onClick={onClose} disabled={loading || isUploading} className="btn-ghost">
             Cancel
           </button>

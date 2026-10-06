@@ -18,7 +18,7 @@ const bcrypt = require('bcryptjs');
 
 // ─── Seed config (from .env) ──────────────────────────────────────────────────
 const SEED_NAME = (process.env.SEED_ADMIN_NAME || 'Super Admin').trim();
-const SEED_EMAIL = (process.env.SEED_ADMIN_EMAIL || 'admin@university.edu').trim().toLowerCase();
+const SEED_EMAIL = (process.env.SEED_ADMIN_EMAIL || 'admin@fupre.com').trim().toLowerCase();
 const SEED_PASSWORD = process.env.SEED_ADMIN_PASSWORD || 'Admin@1234';
 const MONGODB_URI = process.env.MONGODB_URI;
 

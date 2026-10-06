@@ -9,7 +9,7 @@
   html { -webkit-tap-highlight-color: transparent; }
 
   body {
-    @apply bg-[#13111f] text-white font-sans antialiased min-h-screen;
+    @apply bg-slate-100 text-slate-900 dark:bg-[#13111f] dark:text-white font-sans antialiased min-h-screen;
   }
 
   input, button, select, textarea { font-family: inherit; }
@@ -20,18 +20,19 @@
 
   /* Sidebar */
   .sidebar {
-    @apply bg-[#0f0e1a] border-r border-white/5 flex flex-col;
+    @apply bg-white border-r border-slate-200 dark:bg-[#0f0e1a] dark:border-white/5 flex flex-col;
   }
 
   /* Card / panel */
   .panel {
-    @apply bg-white/[0.04] border border-white/[0.08] rounded-2xl;
+    @apply bg-white border border-slate-200 shadow-sm dark:bg-white/[0.04] dark:border-white/[0.08] dark:shadow-none rounded-2xl;
   }
 
   /* Inputs */
   .input-field {
-    @apply w-full bg-white/5 border border-white/10 rounded-xl
-           px-4 py-2.5 text-sm text-white placeholder-white/30
+    @apply w-full bg-white border border-slate-300 text-slate-900 placeholder-slate-400
+           dark:bg-white/5 dark:border-white/10 dark:text-white dark:placeholder-white/30
+           rounded-xl px-4 py-3 sm:py-2.5 min-h-[44px] sm:min-h-0 text-base sm:text-sm
            focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent
            transition-all duration-150 disabled:opacity-50;
   }
@@ -44,27 +45,28 @@
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2
            bg-brand-600 hover:bg-brand-500 active:bg-brand-700
-           text-white text-sm font-semibold rounded-xl px-4 py-2.5 min-h-[40px]
+           text-white text-sm font-semibold rounded-xl px-4 py-2.5 min-h-[44px] sm:min-h-[40px]
            transition-all duration-150
-           focus:outline-none focus:ring-2 focus:ring-brand-400 focus:ring-offset-2 focus:ring-offset-[#13111f]
+           focus:outline-none focus:ring-2 focus:ring-brand-400 focus:ring-offset-2 focus:ring-offset-slate-100 dark:focus:ring-offset-[#13111f]
            disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
   .btn-ghost {
     @apply inline-flex items-center justify-center gap-2
-           bg-white/10 hover:bg-white/20 text-white/70 hover:text-white
-           text-sm font-medium rounded-xl px-4 py-2.5 min-h-[40px]
+           bg-slate-900/5 hover:bg-slate-900/10 text-slate-600 hover:text-slate-900
+           dark:bg-white/10 dark:hover:bg-white/20 dark:text-white/70 dark:hover:text-white
+           text-sm font-medium rounded-xl px-4 py-2.5 min-h-[44px] sm:min-h-[40px]
            transition-all duration-150
-           focus:outline-none focus:ring-2 focus:ring-white/20
+           focus:outline-none focus:ring-2 focus:ring-slate-400/40 dark:focus:ring-white/20
            disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
   .btn-danger {
     @apply inline-flex items-center justify-center gap-2
            bg-red-600 hover:bg-red-500 active:bg-red-700
-           text-white text-sm font-semibold rounded-xl px-4 py-2.5 min-h-[40px]
+           text-white text-sm font-semibold rounded-xl px-4 py-2.5 min-h-[44px] sm:min-h-[40px]
            transition-all duration-150
-           focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-[#13111f]
+           focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-slate-100 dark:focus:ring-offset-[#13111f]
            disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
@@ -73,52 +75,54 @@
     @apply w-full text-sm;
   }
   .data-table thead tr {
-    @apply border-b border-white/10;
+    @apply border-b border-slate-200 dark:border-white/10;
   }
   .data-table thead th {
-    @apply text-left text-xs font-semibold uppercase tracking-wider text-white/40 px-4 py-3;
+    @apply text-left text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-white/40 px-4 py-3;
   }
   .data-table tbody tr {
-    @apply border-b border-white/5 hover:bg-white/[0.03] transition-colors;
+    @apply border-b border-slate-100 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-white/[0.03] transition-colors;
   }
   .data-table tbody td {
-    @apply px-4 py-3 text-white/80;
+    @apply px-4 py-3 text-slate-700 dark:text-white/80;
   }
 
-  /* Status badges */
+  /* Status badges — darker text on light backgrounds, lighter on dark,
+     colour meaning is identical in both themes */
   .badge {
     @apply inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold;
   }
-  .badge-active      { @apply bg-emerald-500/20 text-emerald-300; }
-  .badge-inactive    { @apply bg-amber-500/20   text-amber-300;   }
-  .badge-suspended   { @apply bg-orange-500/20  text-orange-300;  }
-  .badge-graduated   { @apply bg-slate-500/20   text-slate-300;   }
+  .badge-active      { @apply bg-emerald-500/15 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300; }
+  .badge-inactive    { @apply bg-amber-500/15   text-amber-700   dark:bg-amber-500/20   dark:text-amber-300;   }
+  .badge-suspended   { @apply bg-orange-500/15  text-orange-700  dark:bg-orange-500/20  dark:text-orange-300;  }
+  .badge-graduated   { @apply bg-slate-500/15   text-slate-700   dark:bg-slate-500/20   dark:text-slate-300;   }
 
   /* Log result badges */
-  .badge-valid     { @apply bg-emerald-500/20 text-emerald-300; }
-  .badge-expired   { @apply bg-amber-500/20   text-amber-300;   }
-  .badge-revoked   { @apply bg-red-500/20     text-red-300;     }
-  .badge-invalid   { @apply bg-red-500/20     text-red-300;     }
-  .badge-not_found { @apply bg-red-500/20     text-red-300;     }
+  .badge-valid     { @apply bg-emerald-500/15 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300; }
+  .badge-expired   { @apply bg-amber-500/15   text-amber-700   dark:bg-amber-500/20   dark:text-amber-300;   }
+  .badge-revoked   { @apply bg-red-500/15     text-red-700     dark:bg-red-500/20     dark:text-red-300;     }
+  .badge-invalid   { @apply bg-red-500/15     text-red-700     dark:bg-red-500/20     dark:text-red-300;     }
+  .badge-not_found { @apply bg-red-500/15     text-red-700     dark:bg-red-500/20     dark:text-red-300;     }
 
   /* Modal overlay */
   .modal-overlay {
-    @apply fixed inset-0 z-50 flex items-center justify-center p-4
-           bg-black/60 backdrop-blur-sm;
+    @apply fixed inset-0 z-50 flex items-end sm:items-center justify-center p-2 sm:p-4
+           bg-black/60 backdrop-blur-sm overflow-y-auto;
   }
   .modal-box {
-    @apply panel w-full max-w-lg animate-slide-down;
+    @apply panel w-full max-w-full sm:max-w-md md:max-w-lg animate-slide-down
+           max-h-[calc(100dvh-1rem)] sm:max-h-[calc(100dvh-2rem)] overflow-y-auto;
   }
   .modal-header {
-    @apply flex items-center justify-between px-6 py-4 border-b border-white/10;
+    @apply flex items-center justify-between gap-3 px-4 sm:px-6 py-4 border-b border-slate-200 dark:border-white/10;
   }
 
 
   /* Toast */
   .toast {
-    @apply fixed top-4 right-4 z-[60] flex items-center gap-3
+    @apply fixed top-4 right-4 left-4 sm:left-auto sm:max-w-sm z-[60] flex items-center gap-3
            px-4 py-3 rounded-xl shadow-2xl animate-toast-in text-sm font-medium;
   }
-  .toast-success { @apply bg-emerald-900 border border-emerald-600/40 text-emerald-200; }
-  .toast-error   { @apply bg-red-900    border border-red-600/40    text-red-200;     }
+  .toast-success { @apply bg-emerald-50 border border-emerald-300 text-emerald-800 dark:bg-emerald-900 dark:border-emerald-600/40 dark:text-emerald-200; }
+  .toast-error   { @apply bg-red-50     border border-red-300     text-red-800     dark:bg-red-900     dark:border-red-600/40     dark:text-red-200;     }
 }

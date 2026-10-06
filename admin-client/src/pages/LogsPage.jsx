@@ -12,7 +12,7 @@ export default function LogsPage() {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [filters, setFilters] = useState({ result: '', dateFrom: '', dateTo: '' });
+  const [filters, setFilters] = useState({ result: '', locationTag: '', dateFrom: '', dateTo: '' });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -24,6 +24,7 @@ export default function LogsPage() {
       params.set('page', page);
       params.set('limit', 50);
       if (filters.result) params.set('result', filters.result);
+      if (filters.locationTag) params.set('locationTag', filters.locationTag);
       if (filters.dateFrom) params.set('dateFrom', filters.dateFrom);
       if (filters.dateTo) params.set('dateTo', filters.dateTo);
 
@@ -51,12 +52,12 @@ export default function LogsPage() {
     <div className="space-y-6 animate-fade-in">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-extrabold text-white">Scan Audit Logs</h1>
-        <p className="text-sm text-white/40 mt-1">Immutable audit trail of every student ID verification attempt</p>
+        <h1 className="text-2xl font-extrabold text-slate-900 dark:text-white">Scan Audit Logs</h1>
+        <p className="text-sm text-slate-500 dark:text-white/40 mt-1">Immutable audit trail of every student ID verification attempt</p>
       </div>
 
       {error && (
-        <div role="alert" className="rounded-xl bg-red-500/15 border border-red-500/25 text-red-300 text-sm px-4 py-3">
+        <div role="alert" className="rounded-xl bg-red-500/15 border border-red-500/25 text-red-700 dark:text-red-300 text-sm px-4 py-3">
           {error}
         </div>
       )}

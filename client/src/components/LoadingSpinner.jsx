@@ -54,7 +54,7 @@ export default function LoadingSpinner({ message, size = 'md', overlay = false }
         </defs>
       </svg>
       {message && (
-        <p className="text-white/60 text-sm font-medium tracking-wide animate-fade-in">
+        <p className="text-slate-600 dark:text-white/60 text-sm font-medium tracking-wide animate-fade-in">
           {message}
         </p>
       )}
